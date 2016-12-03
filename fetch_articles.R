@@ -33,6 +33,7 @@ c("//DateCreated",
   "//ArticleTitle") %>%
   lapply(function(.x) { pubmed_search_field(xml2::read_xml(as(xmlrec, "character")), .x) }) %>%
   bind_cols() %>%
+  mutate(times_sampled = 0) %>%
   write.table("jama_pediatrics.csv", sep = ",",
               row.names = FALSE, qmethod = "double",
               fileEncoding = "UTF-8")
